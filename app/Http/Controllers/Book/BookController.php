@@ -38,7 +38,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return new BookResource(Book::findOrFail($id));
+        return new BookResource(Book::with('authors')->findOrFail($id));
     }
 
     /**
