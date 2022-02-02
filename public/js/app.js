@@ -2364,6 +2364,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2376,23 +2392,43 @@ __webpack_require__.r(__webpack_exports__);
     return {
       books: [],
       loading: true,
-      error: false
+      error: false,
+      searchTitle: ''
     };
   },
   methods: {
     descriptionCrop: function descriptionCrop(str, maxlength) {
       return str.length > maxlength ? str.slice(0, maxlength - 1) + '...' : str;
+    },
+    sortTitleByAsc: function sortTitleByAsc() {
+      this.books.sort(function (a, b) {
+        return a.title > b.title ? 1 : -1;
+      });
+    },
+    sortTitleByDesc: function sortTitleByDesc() {
+      this.books.sort(function (a, b) {
+        return a.title < b.title ? 1 : -1;
+      });
+    }
+  },
+  computed: {
+    filteredBooks: function filteredBooks() {
+      var _this = this;
+
+      return this.books.filter(function (book) {
+        return book.title.indexOf(_this.searchTitle) !== -1;
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('/api/books').then(function (response) {
-      _this.books = response.data.data;
+      _this2.books = response.data.data;
     })["catch"](function (error) {
-      return _this.error = true;
+      return _this2.error = true;
     })["finally"](function () {
-      return _this.loading = false;
+      return _this2.loading = false;
     });
   }
 });
@@ -2553,7 +2589,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.footer-content[data-v-5896b50c] {\n    margin-top: auto;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.footer-content[data-v-5896b50c] {\n    margin-top: auto;\n    overflow: hidden;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -21736,11 +21772,84 @@ var render = function () {
       _vm._v(" "),
       _vm.error ? _c("error-loading") : _vm._e(),
       _vm._v(" "),
+      _c("section", { staticClass: "book-filters" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "sort-btn d-flex align-items-center border-top border-bottom py-2",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "sort-btn-buttons flex-fill me-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "btn-group btn-group-sm",
+                  attrs: { role: "group", "aria-label": "Small button group" },
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-dark btn-sm me-2",
+                      attrs: { type: "button" },
+                      on: { click: _vm.sortTitleByAsc },
+                    },
+                    [_vm._v("Name A-Z")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-dark btn-sm",
+                      attrs: { type: "button" },
+                      on: { click: _vm.sortTitleByDesc },
+                    },
+                    [_vm._v("Name Z-A")]
+                  ),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "sort-btn-search" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.searchTitle,
+                    expression: "searchTitle",
+                  },
+                ],
+                staticClass: "form-control sort-search",
+                attrs: {
+                  type: "text",
+                  placeholder: "Search",
+                  "data-search": "title",
+                  "aria-label": "Search",
+                },
+                domProps: { value: _vm.searchTitle },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.searchTitle = $event.target.value
+                  },
+                },
+              }),
+            ]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
       _c("section", { staticClass: "section-books mt-5" }, [
         _c(
           "div",
           { staticClass: "row" },
-          _vm._l(_vm.books, function (book) {
+          _vm._l(_vm.filteredBooks, function (book) {
             return _c(
               "div",
               {
@@ -21799,7 +21908,16 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "filter-title me-3" }, [
+      _c("p", { staticClass: "fw-light m-0" }, [_vm._v("Filters")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
