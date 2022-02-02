@@ -32,5 +32,6 @@ export default {
 <style scoped>
 .footer-content {
     margin-top: auto;
+    overflow: hidden;
 }
 </style>
