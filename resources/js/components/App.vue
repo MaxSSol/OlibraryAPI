@@ -11,6 +11,7 @@
 <script>
 import HeaderBar from "./Header-bar";
 import FooterBar from "./Footer-bar";
+
 export default {
     name: 'app',
     components: {

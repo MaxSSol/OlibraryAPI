@@ -34,13 +34,37 @@
                     Books
                 </router-link>
             </li>
+            <li class="nav-item" v-if="!getUser.name">
+                <router-link class="nav-link text-dark" :to="{name: 'login'}">
+                    Login
+                </router-link>
+            </li>
+            <li class="nav-item" v-if="getUser.name">
+                <router-link class="nav-link text-dark" :to="{name: 'account'}">
+                    {{ getUser.name }}
+                </router-link>
+            </li>
+            <li class="nav-item" v-if="getUser.name">
+                <logout></logout>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
+import Logout from "./auth/Logout";
+
 export default {
-    name: "header-bar"
+    name: "header-bar",
+    components: {Logout},
+    computed: {
+        getUser() {
+            return this.$store.getters.user;
+        }
+    },
+    mounted() {
+        this.$store.dispatch('getUser')
+    }
 }
 </script>
 
