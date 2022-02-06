@@ -5,12 +5,17 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
     name: "Logout",
     methods: {
+        ...mapMutations('user', [
+           'clearUserData'
+        ]),
         logoutSubmit() {
             axios.post('/logout').then(res => {
-                localStorage.removeItem('olib-user');
+                this.clearUserData()
+                localStorage.clear()
                 window.location.href = '/'
             })
         }
