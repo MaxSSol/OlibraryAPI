@@ -54,7 +54,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Logout from "./auth/Logout";
+import Logout from "../auth/Logout";
 export default {
     name: "header-bar",
     components: {Logout},
