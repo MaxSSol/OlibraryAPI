@@ -50,7 +50,7 @@ export default {
                         .then(response => {
                             axios.get('/api/user')
                                 .then(user => {
-                                    this.$store.commit('setUser', user.data.data)
+                                    this.$store.commit('setUser', user.data)
                                     this.$store.commit('setAuthStatus', true)
                                     this.$router.push({name: 'account'})
                                 })

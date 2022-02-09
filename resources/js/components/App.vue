@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import HeaderBar from "./Header-bar";
+import HeaderBar from "./headers/Header-bar";
 import FooterBar from "./Footer-bar";
 
 export default {
