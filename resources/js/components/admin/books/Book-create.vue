@@ -3,8 +3,8 @@
         <div class="create-book-info text-center mb-5">
             <h1>Create a book</h1>
         </div>
-        <div class="row d-flex flex-column">
-            <div class="col mb-2">
+        <div class="create-book-main-info d-flex flex-column">
+            <div class="create-book-main-info mb-2">
                 <div class="create-book-title input-group mb-3 me-3">
                     <span class="input-group-text" id="book-title">Title</span>
                     <input
@@ -51,7 +51,7 @@
                     </multiselect>
                 </div>
             </div>
-            <div class="col">
+            <div class="create-book-main-info-description">
                 <div class="form-floating update-book-description">
                     <span class="input-group-text" id="book-description">Description</span>
                     <textarea

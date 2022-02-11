@@ -17,12 +17,12 @@
                             </span>
                     </div>
                 </div>
-                <div class="col d-flex justify-content-lg-end justify-content-sm-center">
-                    <div class="book-info-download ms-4 mt-3 d-flex flex-column">
-                        <div class="book-image text-center">
+                <div class="col col-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="book-info-download mt-3 d-flex flex-column justify-content-center align-items-center">
+                        <div class="book-image">
                             <img class="book-image" :src="`/storage/books/images/${book.image_name}`" alt="book-image"/>
                         </div>
-                        <div class="book-download-link text-center">
+                        <div class="book-download-link">
                             <a type="button" class="mt-3 btn btn-outline-success">
                                 <span class="fw-bold">Download</span>
                             </a>
