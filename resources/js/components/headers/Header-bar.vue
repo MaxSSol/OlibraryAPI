@@ -34,17 +34,17 @@
                     Books
                 </router-link>
             </li>
-            <li class="nav-item" v-if="!getUser.name">
+            <li class="nav-item" v-if="!user">
                 <router-link class="nav-link text-dark" :to="{name: 'login'}">
                     Login
                 </router-link>
             </li>
-            <li class="nav-item" v-if="getUser.name">
+            <li class="nav-item" v-if="user">
                 <router-link class="nav-link text-dark" :to="{name: 'account'}">
-                    {{ getUser.name }}
+                    {{ user.name }}
                 </router-link>
             </li>
-            <li class="nav-item" v-if="getUser.name">
+            <li class="nav-item" v-if="user">
                 <logout></logout>
             </li>
         </ul>
@@ -52,19 +52,16 @@
 </template>
 
 <script>
-import Logout from "./auth/Logout";
+import {mapGetters} from 'vuex'
 
+import Logout from "../auth/Logout";
 export default {
     name: "header-bar",
     components: {Logout},
-    computed: {
-        getUser() {
-            return this.$store.getters.user;
-        }
-    },
-    mounted() {
-        this.$store.dispatch('getUser')
-    }
+    computed: mapGetters({
+        user: 'user'
+    }),
+
 }
 </script>
 

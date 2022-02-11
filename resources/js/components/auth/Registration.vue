@@ -65,9 +65,10 @@ export default {
                     axios.post('/register', this.form)
                         .then(response => {
                             axios.get('/api/user')
-                                .then(response => {
-                                    this.$store.dispatch('getUser');
-                                    window.location.href = '/account'
+                                .then(user => {
+                                    this.$store.commit('setUser', user.data)
+                                    this.$store.commit('setAuthStatus', true)
+                                    this.$router.push({name: 'account'})
                                 })
                         })
                         .catch(error => {

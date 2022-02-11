@@ -50,7 +50,9 @@ export default {
                         .then(response => {
                             axios.get('/api/user')
                                 .then(user => {
-                                    window.location.href = '/account'
+                                    this.$store.commit('setUser', user.data)
+                                    this.$store.commit('setAuthStatus', true)
+                                    this.$router.push({name: 'account'})
                                 })
                         })
                         .catch(error => {
