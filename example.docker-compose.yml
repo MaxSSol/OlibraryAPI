@@ -10,14 +10,14 @@ services:
         links:
             -   fpm
         volumes:
-            - ./:/var/www/Olibrary
+            - ./:/var/www/OlibraryAPI
         container_name: olibrary-api-nginx
     fpm:
         build:
             context: .
             dockerfile: docker/fpm/Dockerfile
         volumes:
-            - ./:/var/www/Olibrary
+            - ./:/var/www/OlibraryAPI
         links:
             -   mysql
         container_name: olibrary-api-fpm
