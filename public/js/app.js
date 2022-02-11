@@ -27331,8 +27331,8 @@ var render = function () {
   return _c("section", { staticClass: "create-book" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "row d-flex flex-column" }, [
-      _c("div", { staticClass: "col mb-2" }, [
+    _c("div", { staticClass: "create-book-main-info d-flex flex-column" }, [
+      _c("div", { staticClass: "create-book-main-info mb-2" }, [
         _c("div", { staticClass: "create-book-title input-group mb-3 me-3" }, [
           _c(
             "span",
@@ -27428,7 +27428,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "create-book-main-info-description" }, [
         _c("div", { staticClass: "form-floating update-book-description" }, [
           _c(
             "span",
@@ -27520,8 +27520,8 @@ var render = function () {
       _c("h1", [_vm._v("Update book: " + _vm._s(_vm.book.title))]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row d-flex flex-column" }, [
-      _c("div", { staticClass: "col" }, [
+    _c("div", { staticClass: "update-book-inputs d-flex flex-column" }, [
+      _c("div", { staticClass: "update-book-main-info" }, [
         _c("div", { staticClass: "update-book-title input-group mb-3" }, [
           _c(
             "span",
@@ -27624,7 +27624,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col mt-2" }, [
+      _c("div", { staticClass: "update-book-description mt-2" }, [
         _c("div", { staticClass: "form-floating update-book-description" }, [
           _c("p", { staticClass: "fw-bold" }, [_vm._v("Description")]),
           _vm._v(" "),
@@ -28328,35 +28328,28 @@ var render = function () {
             2
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "col d-flex justify-content-lg-end justify-content-sm-center",
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "book-info-download ms-4 mt-3 d-flex flex-column",
-                },
-                [
-                  _c("div", { staticClass: "book-image text-center" }, [
-                    _c("img", {
-                      staticClass: "book-image",
-                      attrs: {
-                        src: "/storage/books/images/" + _vm.book.image_name,
-                        alt: "book-image",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0),
-                ]
-              ),
-            ]
-          ),
+          _c("div", { staticClass: "col col-12 col-sm-12 col-md-6 col-lg-6" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "book-info-download mt-3 d-flex flex-column justify-content-center align-items-center",
+              },
+              [
+                _c("div", { staticClass: "book-image" }, [
+                  _c("img", {
+                    staticClass: "book-image",
+                    attrs: {
+                      src: "/storage/books/images/" + _vm.book.image_name,
+                      alt: "book-image",
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _vm._m(0),
+              ]
+            ),
+          ]),
         ]),
       ]),
     ],
@@ -28368,7 +28361,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "book-download-link text-center" }, [
+    return _c("div", { staticClass: "book-download-link" }, [
       _c(
         "a",
         {

@@ -3,8 +3,8 @@
         <div class="update-book-info text-center mb-5">
             <h1>Update book: {{ book.title }}</h1>
         </div>
-        <div class="row d-flex flex-column">
-            <div class="col">
+        <div class="update-book-inputs d-flex flex-column">
+            <div class="update-book-main-info">
                 <div class="update-book-title input-group mb-3">
                     <span class="input-group-text" id="book-title">Title</span>
                     <input
@@ -52,7 +52,7 @@
                     </multiselect>
                 </div>
             </div>
-            <div class="col mt-2">
+            <div class="update-book-description mt-2">
                 <div class="form-floating update-book-description">
                     <p class="fw-bold">Description</p>
                     <textarea
