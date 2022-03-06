@@ -3416,6 +3416,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3430,7 +3442,8 @@ __webpack_require__.r(__webpack_exports__);
       book: [],
       authors: [],
       loading: true,
-      error: false
+      error: false,
+      favorite: false
     };
   },
   mounted: function mounted() {
@@ -3444,6 +3457,37 @@ __webpack_require__.r(__webpack_exports__);
     })["finally"](function () {
       return _this.loading = false;
     });
+    axios.get('/api/favorites/' + this.id).then(function (response) {
+      _this.favorite = response.data.status;
+    })["catch"](function (error) {
+      return console.log(error.response);
+    });
+  },
+  methods: {
+    addToFavorite: function addToFavorite() {
+      var _this2 = this;
+
+      axios.post('/api/favorites', {
+        book_id: this.id
+      }).then(function (response) {
+        _this2.favorite = response.data.status;
+      })["catch"](function (error) {
+        _this2.$router.push({
+          name: 'login'
+        });
+      });
+    },
+    removeFavorite: function removeFavorite() {
+      var _this3 = this;
+
+      axios["delete"]('/api/favorites/' + this.id).then(function (response) {
+        _this3.favorite = response.data.status;
+      })["catch"](function (error) {
+        _this3.$router.push({
+          name: 'login'
+        });
+      });
+    }
   }
 });
 
@@ -3883,7 +3927,8 @@ var auth = function auth(to, from, next) {
   path: '/book/:id',
   name: 'book',
   component: _components_books_Book__WEBPACK_IMPORTED_MODULE_3__["default"],
-  props: true
+  props: true,
+  beforeEnter: auth
 }, {
   path: '/login',
   name: 'login',
@@ -29370,6 +29415,48 @@ var render = function () {
     "div",
     [
       _vm.error ? _c("error-loading") : _vm._e(),
+      _vm._v(" "),
+      _c("section", { staticClass: "head-buttons" }, [
+        _c("div", { staticClass: "share-buttons" }, [
+          !_vm.favorite
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn fw-bold btn-add-to-favorite",
+                  on: { click: _vm.addToFavorite },
+                },
+                [
+                  _vm._v("\n                Favorite\n                "),
+                  _c("img", {
+                    staticClass: "favorite-icon",
+                    attrs: {
+                      src: "https://img.icons8.com/external-prettycons-lineal-prettycons/20/000000/external-favorite-essentials-prettycons-lineal-prettycons.png",
+                    },
+                  }),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.favorite
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn fw-bold btn-favorite",
+                  on: { click: _vm.removeFavorite },
+                },
+                [
+                  _vm._v("\n                Favorite\n                "),
+                  _c("img", {
+                    staticClass: "favorite-icon",
+                    attrs: {
+                      src: "https://img.icons8.com/external-prettycons-solid-prettycons/20/000000/external-favorite-essentials-prettycons-solid-prettycons.png",
+                    },
+                  }),
+                ]
+              )
+            : _vm._e(),
+        ]),
+      ]),
       _vm._v(" "),
       _c("section", { staticClass: "book-detail" }, [
         _c("div", { staticClass: "row" }, [
