@@ -36,7 +36,7 @@ export default [
     {path: '/', name: 'home', component: Home},
     {path: '/categories', name: 'categories', component: Categories},
     {path: '/books', name: 'books', component: Books},
-    {path: '/book/:id', name: 'book', component: Book, props: true},
+    {path: '/book/:id', name: 'book', component: Book, props: true, beforeEnter: auth},
     {path: '/login', name: 'login', component: Login, beforeEnter: guest},
     {path: '/registration', name: 'registration', component: Registration, beforeEnter: guest},
     {path: '/account', name: 'account', component: Account, beforeEnter: auth},
