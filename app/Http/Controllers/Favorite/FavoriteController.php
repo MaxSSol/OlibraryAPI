@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Favorite;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FavoriteResource;
 use App\Models\Book;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +13,11 @@ class FavoriteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return FavoriteResource
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return new FavoriteResource($request->user()->favorites()->get());
     }
 
     /**
