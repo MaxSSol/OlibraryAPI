@@ -14,6 +14,7 @@ import AdminBookUpdate from "../components/admin/books/Book-update"
 import AdminBookCreate from "../components/admin/books/Book-create"
 import AdminAuthorCreate from "../components/admin/authors/Author-create"
 import AdminAuthorUpdate from "../components/admin/authors/Author-update"
+import TrashBook from "../components/admin/books/Trash-Book";
 
 const guest = (to, from, next) => {
     if (!store.getters.authStatus) {
@@ -48,4 +49,5 @@ export default [
     {path: '/olib/admin/book/create', name: 'admin/book-create', component: AdminBookCreate},
     {path: '/olib/admin/author/create', name: 'admin/author-create', component: AdminAuthorCreate},
     {path: '/olib/admin/author/update/:id', name: 'admin/author-update', component: AdminAuthorUpdate, props: true},
+    {path: '/olib/admin/trash/books', name: 'admin/trash/books', component: TrashBook},
 ]
