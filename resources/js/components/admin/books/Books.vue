@@ -6,6 +6,9 @@
             <router-link :to="{name: 'admin/book-create'}" class="btn btn-primary">
                 Add a book
             </router-link>
+            <router-link :to="{name: 'admin/trash/books'}" class="btn btn-primary">
+                Trash
+            </router-link>
         </div>
         <table class="table text-lg-center">
             <thead>
