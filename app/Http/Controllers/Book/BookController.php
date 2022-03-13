@@ -118,7 +118,7 @@ class BookController extends Controller
         $bookTitle = $book->title;
         $book->delete();
         return response()->json([
-            'status' => "The book $bookTitle has been successfully added to the cart"
+            'status' => "The book $bookTitle has been successfully added to the trash"
         ],
             200,
             ['Content-type' => 'application/json']
