@@ -23,4 +23,5 @@ Route::apiResources([
     'authors' => \App\Http\Controllers\Authors\AuthorController::class,
     'favorites' => \App\Http\Controllers\Favorite\FavoriteController::class,
     'trash/books' => \App\Http\Controllers\Trash\BookTrashController::class,
+    'users' => \App\Http\Controllers\User\UserController::class,
 ]);
