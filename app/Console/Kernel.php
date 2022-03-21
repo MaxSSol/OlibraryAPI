@@ -15,7 +15,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            \App\Models\Book::onlyTrashed()
+                ->whereDate('deleted_at', '<=', now()->subDays(4))
+                ->get()
+                ->each(function ($book) {
+                    $book->forceDelete();
+                });
+        })->daily();
     }
 
     /**

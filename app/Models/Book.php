@@ -39,4 +39,15 @@ class Book extends Model
 
         );
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($book) {
+            $book->categories()->detach();
+            $book->authors()->detach();
+            $book->favorites()->detach();
+        });
+    }
 }
