@@ -28,4 +28,26 @@ class Book extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'favorites',
+            'book_id',
+            'user_id',
+
+        );
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($book) {
+            $book->categories()->detach();
+            $book->authors()->detach();
+            $book->favorites()->detach();
+        });
+    }
 }

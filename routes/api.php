@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Resources\BookCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'books' => \App\Http\Controllers\Book\BookController::class,
     'authors' => \App\Http\Controllers\Authors\AuthorController::class,
+    'favorites' => \App\Http\Controllers\Favorite\FavoriteController::class,
+    'trash/books' => \App\Http\Controllers\Trash\BookTrashController::class,
+    'users' => \App\Http\Controllers\User\UserController::class,
 ]);
