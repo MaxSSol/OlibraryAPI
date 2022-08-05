@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - "8082:80"
+    links:
+      - fpm
+    volumes:
+      - ./:/var/www/OlibraryAPI
+    container_name: '${APP_NAME}-nginx'
+  fpm:
+    build:
+      context: .
+      dockerfile: docker/fpm/Dockerfile
+    volumes:
+      - ./:/var/www/OlibraryAPI
+    links:
+      - mysql
+    container_name:  '${APP_NAME}-app'
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '${FORWARD_DB_PORT:-33061}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+
+  npm:
+    build:
+      context: .
+      dockerfile: docker/npm/Dockerfile
+    container_name: '${APP_NAME}-npm'
+    volumes:
+      - ./:/var/www/OlibraryAPI
+    entrypoint: [ 'npm' ]
